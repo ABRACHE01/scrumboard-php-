@@ -60,3 +60,7 @@ function hidebuttons(){
 	<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a> 
 	`
 }	
+
+function clear_form(){
+	document.getElementById("form-task").reset();
+  }
