@@ -1,12 +1,14 @@
 <?php
     
-    //CONNECT TO MYSQL DATABASE USING MYSQLI
+    //CONNECT TO MYSQL DATABASE USING MYSQLI 
+
    $serverName="localhost";
    $userName="root";
    $password="";
    $dbName="scrumboard";
    
-   //create connection
+   //create connection 
+   
 global $con;
    $con=mysqli_connect($serverName,$userName, $password,$dbName);
 

@@ -23,7 +23,6 @@ function gitElementToModal(id){
 		<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
 		 `
 	// (1) getting the curent values frome the button task 
-     
 	let title = document.getElementById(id).querySelector('.taskTitle').innerHTML;
 	let date = document.getElementById(id).querySelector('.taskDate').innerHTML;
 	let description = document.getElementById(id).querySelector('.taskDescription').innerHTML;
@@ -43,15 +42,11 @@ function gitElementToModal(id){
 		type_feature.checked=true;
 	}else{
 		type_bug.checked=true;
-	}
-
-	
-	
+	}	
 	
 }
 
     //hiding the uptade button from the add task modal
-
 function hidebuttons(){
 	f=document.querySelector('.modal-footer');
 
