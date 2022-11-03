@@ -341,13 +341,13 @@
 							<input type="hidden" name="task-iid" id="task-id" >
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" name="title" class="form-control" id="task-title"/>
+								<input type="text" name="title" class="form-control" id="task-title" required/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="type" type="radio" value="1" id="task-type-feature"/>
+										<input class="form-check-input" name="type" type="radio" value="1" id="task-type-feature" checked />
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
@@ -359,7 +359,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
-								<select  name="priority" class="form-select" id="task-priority">
+								<select  name="priority" class="form-select" id="task-priority" required>
 									<option value="">Please select</option>
 									<option value="1">Low</option>
 									<option value="2">Medium</option>
@@ -369,7 +369,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Status</label>
-								<select name="status" class="form-select" id="task-status">
+								<select name="status" class="form-select" id="task-status" required>
 									<option value="">Please select</option>
 									<option value="1">To Do</option>
 									<option value="2">In Progress</option>
@@ -377,12 +377,12 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label class="form-label">Date</label>
-								<input type="date" class="form-control" id="task-date" name="date"/>
+								<label class="form-label">Date</label >
+								<input type="date" class="form-control" id="task-date" name="date" required/>
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task-description" name="description"></textarea>
+								<textarea class="form-control" rows="10" id="task-description" name="description" required></textarea>
 							</div>
 						
 					</div>

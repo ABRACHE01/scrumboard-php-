@@ -1,9 +1,11 @@
 
 <?php
+
 //INCLUDE DATABASE FILE
  include('database.php');
+
 //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
-session_start();
+ session_start();
 
 //ROUTING
 if(isset($_POST['save']))        saveTask();
@@ -18,9 +20,8 @@ if(isset($_GET['del']))          deleteTask();
 function getTasks($status_id){ ?>
     <!-- //CODE HERE -->
  <?php
-
+ 
     global $con ;
-    require 'database.php';
     $requete= "SELECT * from tasks WHERE status_id = $status_id";
     $query=mysqli_query($con , $requete);
 
@@ -103,7 +104,7 @@ function getTasks($status_id){ ?>
                                     <div class="fw-bold h5 taskTitle " > <?php echo $rows['title']; ?></div>
 
                                     <div >
-                                    <div class="text-muted" > #<?php echo $rows['id']; ?> created in <span class="taskDate"><?php echo $rows['task_datetime'] ;?></span>
+                                         <div class="text-muted" > #<?php echo $rows['id']; ?> created in <span class="taskDate"><?php echo $rows['task_datetime'] ;?></span>
                                     </div>
 
                                     <div class="taskDescription" title=""><?php echo $rows['description']?> </div>
@@ -168,7 +169,7 @@ function saveTask() {
 function updateTask(){
     global $con;
     //CODE HERE
-     //  updating inputs that the user writed into database by using (1)
+     //  updating inputs that the user writed , into database by using (1)
     $id=$_POST['task-iid'];
     $title=$_POST['title'];
     $priority=$_POST['priority'];
