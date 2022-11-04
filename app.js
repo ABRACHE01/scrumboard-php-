@@ -22,6 +22,7 @@ function gitElementToModal(id){
 		<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
 		<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
 		 `
+
 	// (1) getting the curent values frome the button task 
 	let title = document.getElementById(id).querySelector('.taskTitle').innerHTML;
 	let date = document.getElementById(id).querySelector('.taskDate').innerHTML;
@@ -30,7 +31,8 @@ function gitElementToModal(id){
 	let status = document.getElementById(id).querySelector('.taskStatus').getAttribute('data-id-status');
 	let type = document.getElementById(id).querySelector('.taskType').getAttribute('data-id-type'); 
     
-    //(2) putting the values in the modal
+    //(2) putting the values into the modal form
+	
     task_id.value=id;
     title_inp.value=title;
 	description_inp.value=description ;

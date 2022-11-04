@@ -5,7 +5,7 @@
  include('database.php');
 
 //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
- session_start();
+//  session_start(); 
 
 //ROUTING
 if(isset($_POST['save']))        saveTask();
@@ -16,12 +16,42 @@ if(isset($_GET['del']))          deleteTask();
 
 
 <?php 
+ // if you push the button save 
+ function saveTask() {   
 
+    global $con;
+    //CODE HERE
+
+    //  saving inputs that the user writed in the modal into database by using (1) and (2)
+
+    //(1) import iput values from modal
+
+    $title=$_POST['title'];
+    $type=$_POST['type'];
+    $priority=$_POST['priority'];
+    $status=$_POST['status'];
+    $date=$_POST['date'];
+    $description=$_POST['description'];
+
+    // (2) SQL INSERT
+     
+    $req="INSERT INTO `tasks`(`title`,`type_id`,`priority_id`,`status_id`,`task_datetime`,`description`) 
+    VALUES ('$title','$type','$priority','$status','$date','$description')";
+    $query=mysqli_query($con,$req);
+    
+   
+    $_SESSION['message'] = "Task has been added successfully !";
+     header('location: index.php');
+    
+}
+
+ //get and display tasks 
 function getTasks($status_id){ ?>
     <!-- //CODE HERE -->
  <?php
  
     global $con ;
+
     $requete= "SELECT * from tasks WHERE status_id = $status_id";
     $query=mysqli_query($con , $requete);
 
@@ -29,7 +59,7 @@ function getTasks($status_id){ ?>
 
     while($rows=mysqli_fetch_assoc($query)){ 
             
-            // i used these variables (1) (2) (3) to stock the value selected  of each input
+            // i used these variables (1) (2) (3) to stock the name of the value selected of each input
 
             $status_name = "";//(1)
             if($rows['priority_id'] == 1){
@@ -134,42 +164,14 @@ function getTasks($status_id){ ?>
 
 <?php
  
- // if you push the button save 
-function saveTask() {   
 
-    global $con;
-    //CODE HERE
-
-    //  saving inputs that the user writed in the modal into database by using 
-
-    $title=$_POST['title'];
-    $type=$_POST['type'];
-    $priority=$_POST['priority'];
-    $status=$_POST['status'];
-    $date=$_POST['date'];
-    $description=$_POST['description'];
-
-    // (1)SQL INSERT
-     
-    $req="INSERT INTO `tasks`(`title`,`type_id`,`priority_id`,`status_id`,`task_datetime`,`description`) 
-    VALUES ('$title','$type','$priority','$status','$date','$description')";
-    $query=mysqli_query($con,$req);
-    // if($query){
-    //    echo"<h1>sucsesss</h1>" ;
-    // }else{
-    //     echo"<h1>error </h1>" ;
-    // }
-
-   
-    $_SESSION['message'] = "Task has been added successfully !";
-     header('location: index.php');
-    
-}
 
 function updateTask(){
     global $con;
     //CODE HERE
-     //  updating inputs that the user writed , into database by using (1)
+     //  updating inputs that the user writed , into database by using (1) / (2)
+
+     //(1) import iput values from modal
     $id=$_POST['task-iid'];
     $title=$_POST['title'];
     $priority=$_POST['priority'];
@@ -178,7 +180,7 @@ function updateTask(){
     $date=$_POST['date'];
     $description=$_POST['description']; 
     
-    //SQL UPDATE(1)
+    //SQL UPDATE(2)
     $req="UPDATE `tasks` SET `title`='$title',`type_id`=$type,`priority_id`=$priority,`status_id`=$status,`task_datetime`='$date',`description`='$description' WHERE id = $id";
     $retval = mysqli_query($con,$req);
     
@@ -192,18 +194,20 @@ function deleteTask(){
     global $con ;
     //CODE HERE
 
-    // id of task you want to delete 
+    // id of task you want to delete,got it from the delete button
+
     $id_Task = $_GET['del'];
 
     //SQL DELETE 
-    mysqli_query($con, "DELETE FROM tasks WHERE id=$id_Task");
+    mysqli_query($con, "DELETE FROM tasks WHERE tasks.id = $id_Task");
 
 
     $_SESSION['message'] = "Task has been deleted successfully !";
     header('location: index.php');
 }
 
-// couter of buttons in every task 
+// counter of buttons in every task 
+
 function countT($status_id){
     global $con ;
 
